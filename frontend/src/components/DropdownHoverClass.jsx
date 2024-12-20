@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function DropdownHoverClass() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,16 +7,16 @@ export default function DropdownHoverClass() {
   const handleMouseLeave = () => setIsOpen(false);
 
   return (
-    <div className="relative inline-block text-left ">
+    <div className="relative inline-block text-left">
       <button
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="text-black bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-lg px-5 py-1.5 text-center inline-flex items-center dark:bg-gray-300 dark:hover:bg-gray-400 dark:focus:ring-gray-400"
+        className="text-black bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-base md:text-lg px-3 md:px-5 py-1 md:py-1.5 text-center inline-flex items-center dark:bg-gray-300 dark:hover:bg-gray-400 dark:focus:ring-gray-400"
         type="button"
       >
         CBSE9
         <svg
-          className="w-2.5 h-2.5 ms-3"
+          className="w-3 md:w-4 h-3 md:h-4 ml-2"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -35,11 +35,11 @@ export default function DropdownHoverClass() {
       {/* Dropdown menu */}
       {isOpen && (
         <div
-          className="absolute bg-gray-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-200 "
+          className="absolute bg-gray-200 divide-y divide-gray-100 rounded-lg shadow w-36 sm:w-44 lg:w-48 dark:bg-gray-200 z-20"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <ul className="py-2 text-sm text-gray-700 dark:text-black  z-10">
+          <ul className="py-2 text-sm text-gray-700 dark:text-black">
             <li>
               <a
                 href="#"
@@ -56,8 +56,6 @@ export default function DropdownHoverClass() {
                 CBSE11
               </a>
             </li>
-           
-          
           </ul>
         </div>
       )}

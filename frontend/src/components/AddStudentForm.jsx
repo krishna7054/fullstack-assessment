@@ -7,7 +7,6 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
   const [selectedClass, setSelectedClass] = useState('');
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [joiningDate, setJoiningDate] = useState(''); // New state for joining date
-  
 
   const coursesByClass = {
     'CBSE 9': ['CBSE9 Math', 'CBSE9 Science', 'CBSE9 Social Studies', 'CBSE9 English'],
@@ -37,18 +36,17 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
     setJoiningDate(e.target.value); // Set joining date
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const studentData = {
       studentName: studentName,
-      cohort: selectedCohort, // Adjust the column names as per your table
-    
-    courses:selectedSubjects,
-    dateJoined:joiningDate, // Add joining date to the data
+      cohort: selectedCohort,
+      courses: selectedSubjects,
+      dateJoined: joiningDate,
     };
     try {
       const { data, error } = await supabase.from('Student').insert([studentData]);
-  
+
       if (error) {
         console.error('Error inserting data:', error.message);
         alert('Failed to add student. Please try again.');
@@ -61,7 +59,6 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
         setSelectedSubjects([]);
         setJoiningDate('');
         onClose(); // Close the form
-        
       }
     } catch (error) {
       console.error('Unexpected error:', error);
@@ -70,13 +67,13 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-4">Add New Student</h2>
-        <form onSubmit={handleSubmit}>
+    <div className="fixed inset-0  bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 -mt-96 lg:pt-96">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+        <h2 className="text-xl md:text-2xl font-semibold mb-4 text-center">Add New Student</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Student Name */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          <div>
+            <label className="block text-gray-700 text-sm md:text-base font-bold mb-2" htmlFor="name">
               Student Name
             </label>
             <input
@@ -91,8 +88,8 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
           </div>
 
           {/* Cohort */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cohort">
+          <div>
+            <label className="block text-gray-700 text-sm md:text-base font-bold mb-2" htmlFor="cohort">
               Cohort
             </label>
             <select
@@ -112,8 +109,8 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
           </div>
 
           {/* Class */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="class">
+          <div>
+            <label className="block text-gray-700 text-sm md:text-base font-bold mb-2" htmlFor="class">
               Class
             </label>
             <select
@@ -133,11 +130,9 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
 
           {/* Subjects */}
           {selectedClass && (
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Subjects
-              </label>
-              <div className="grid grid-cols-2">
+            <div>
+              <label className="block text-gray-700 text-sm md:text-base font-bold mb-2">Subjects</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {coursesByClass[selectedClass]?.map((subject, index) => (
                   <div key={index} className="flex items-center">
                     <input
@@ -159,10 +154,8 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
 
           {/* Selected Subjects Display */}
           {selectedSubjects.length > 0 && (
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Selected Subjects
-              </label>
+            <div>
+              <label className="block text-gray-700 text-sm md:text-base font-bold mb-2">Selected Subjects</label>
               <div className="border px-3 py-2 rounded-lg shadow-sm">
                 {selectedSubjects.map((subject, index) => (
                   <span
@@ -177,8 +170,8 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
           )}
 
           {/* Joining Date */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="joiningDate">
+          <div>
+            <label className="block text-gray-700 text-sm md:text-base font-bold mb-2" htmlFor="joiningDate">
               Joining Date
             </label>
             <input
@@ -192,17 +185,17 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200"
+              className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200"
             >
               Submit
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg shadow hover:bg-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200"
+              className="w-full sm:w-auto px-4 py-2 bg-gray-300 text-gray-700 rounded-lg shadow hover:bg-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200"
             >
               Cancel
             </button>
