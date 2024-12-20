@@ -20,6 +20,32 @@ const StudentsTable = () => {
     fetchStudents();
   }, [dispatch]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-GB', options);  // Format to "17 Nov. 2024"
+  };
+  const formatDateTime = (dateString) => {
+    const date = new Date(dateString);
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true, // 12-hour format
+    };
+  
+    // Format date and time using toLocaleString
+    let formattedDate = date.toLocaleString('en-GB', options);
+  
+    // Manually convert AM/PM to uppercase if necessary
+    formattedDate = formattedDate.replace(/(am|pm)/i, (match) => match.toUpperCase());
+  
+    return formattedDate;  // This will return the date and time with AM/PM in uppercase
+  };
+  
+
   return (
     <table className="overflow-x-auto mx-auto my-auto">
       <thead className="bg-gray-100">
@@ -49,17 +75,17 @@ const StudentsTable = () => {
                         className="flex items-center gap-1 bg-slate-100 px-1.5 py-1.5 rounded-md"
                       >
                         {i % 2 === 0 ? (
-                          <img src="src/assets/st2.jpg" alt="" className="h-5 w-5" />
+                          <img src="/st2.jpg" alt="" className="h-5 w-5" />
                         ) : (
-                          <img src="src/assets/st1.png" alt="" className="h-5 w-5" />
+                          <img src="/st1.png" alt="" className="h-5 w-5" />
                         )}
                         <span>{course}</span>
                       </div>
                     ))}
                   </div>
                 </td>
-                <td className="px-4 py-2 border-b">{student.dateJoined}</td>
-                <td className="px-4 py-2 border-b">{student.lastLogin}</td>
+                <td className="px-4 py-2 border-b">{formatDate(student.dateJoined)}</td>
+                <td className="px-4 py-2 border-b">{formatDateTime(student.lastLogin)}</td>
                 <td className="px-8 py-2 border-b">
                   <span
                     className={`inline-block h-3 w-3 rounded-full ${

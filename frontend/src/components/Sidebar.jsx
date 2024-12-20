@@ -22,7 +22,7 @@ export function Sidebar() {
       <div className="space-y-4 py-4">
         <div className="px-2 py-2">
           <Link to="/" className="flex items-center pl-2 mb-10 w-28 h-12">
-          <img src="/src\assets/image.png" alt="" />
+          <img src="/image.png" alt="" />
             
           </Link>
           <nav className="space-y-1">

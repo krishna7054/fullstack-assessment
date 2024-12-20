@@ -35,7 +35,7 @@ export function Header() {
 
         <div className="flex items-center space-x-2">
           <img
-            src="src\assets\t1.jpeg"
+            src="/t1.jpeg"
             alt="Avatar"
             className="h-8 w-8 rounded-md border border-gray-300"
           />
