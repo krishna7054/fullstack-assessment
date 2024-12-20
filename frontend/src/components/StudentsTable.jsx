@@ -34,6 +34,7 @@ import supabase from "../utils/supabase";
 
 const StudentsTable = () => {
   const [student,setStudent]=useState([]);
+
 useEffect(()=>{
   const fetchStudnt=async()=>{
     const {data,error}=await supabase.from("Student").select("*");
@@ -45,7 +46,7 @@ useEffect(()=>{
       }
       };
   fetchStudnt();
-},[]);
+},[student]);
 
 
   return (
@@ -70,7 +71,7 @@ useEffect(()=>{
               <div className="flex flex-wrap gap-4 ">
                 {student.courses.map((course, i) => (
                   <div key={i} className="flex items-center gap-1 bg-slate-100 px-1.5 py-1.5 rounded-md">
-                    {course.includes("Science") ? (
+                    {i%2==0 ? (
                     //   <BookOpen className="h-4 w-4 text-gray-600" />
                     <img src="src\assets\st2.jpg" alt="" className="h-5 w-5" />
                       

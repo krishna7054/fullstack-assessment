@@ -61,6 +61,7 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
         setSelectedSubjects([]);
         setJoiningDate('');
         onClose(); // Close the form
+        
       }
     } catch (error) {
       console.error('Unexpected error:', error);
@@ -104,9 +105,9 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
               <option value="" disabled>
                 Select cohort
               </option>
-              <option value="2024-25">AY 2024-25</option>
-              <option value="2023-24">AY 2023-24</option>
-              <option value="2022-23">AY 2022-23</option>
+              <option value="AY 2024-25">AY 2024-25</option>
+              <option value="AY 2023-24">AY 2023-24</option>
+              <option value="AY 2022-23">AY 2022-23</option>
             </select>
           </div>
 

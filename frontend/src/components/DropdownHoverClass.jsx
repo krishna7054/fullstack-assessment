@@ -14,7 +14,7 @@ export default function DropdownHoverClass() {
         className="text-black bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-lg px-5 py-1.5 text-center inline-flex items-center dark:bg-gray-300 dark:hover:bg-gray-400 dark:focus:ring-gray-400"
         type="button"
       >
-        CBSE 9
+        CBSE9
         <svg
           className="w-2.5 h-2.5 ms-3"
           aria-hidden="true"
@@ -45,7 +45,7 @@ export default function DropdownHoverClass() {
                 href="#"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                CBSE 10
+                CBSE9
               </a>
             </li>
             <li>
@@ -53,7 +53,7 @@ export default function DropdownHoverClass() {
                 href="#"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                CBSE 12
+                CBSE11
               </a>
             </li>
            
