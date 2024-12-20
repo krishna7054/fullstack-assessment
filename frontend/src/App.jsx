@@ -28,7 +28,7 @@ function App() {
       <Sidebar />
       <div className="ml-60">
         <Header />
-        <main className="pt-4 p-2 mx-8 my-20 bg-white  rounded-xl w-fit ">
+        <main className="pt-4 p-2  my-20 bg-white  rounded-xl w-fit lg:min-w-full  ">
           <div className="flex items-center justify-between mb-6 ">
             <div className="flex gap-4 ml-8">
               <DropdownHoverYear />

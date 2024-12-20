@@ -47,7 +47,7 @@ const StudentsTable = () => {
   
 
   return (
-    <table className="overflow-x-auto mx-auto my-auto">
+    <table className="w-full">
       <thead className="bg-gray-100">
         <tr>
           <th className="px-4 py-2 border-b text-left">Student Name</th>
