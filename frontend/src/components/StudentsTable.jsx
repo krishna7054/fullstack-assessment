@@ -51,7 +51,7 @@ useEffect(()=>{
 
   return (
    
-    <table className="min-w-full table-auto   ">
+    <table className="overflow-x-auto mx-auto my-auto">
       <thead className="bg-gray-100">
         <tr >
           <th className="px-4 py-2 border-b text-left">Student Name</th>
@@ -64,7 +64,7 @@ useEffect(()=>{
       </thead>
       <tbody>
         {student.map((student, index) => (
-          <tr key={index} className="hover:bg-gray-50 ">
+          <tr key={index} className="hover:bg-gray-50  items-center gap-1">
             <td className="px-4 py-2 border-b ">{student.studentName}</td>
             <td className="px-4 py-2 border-b">{student.cohort}</td>
             <td className="px-4 py-2 border-b font-medium">
@@ -87,7 +87,7 @@ useEffect(()=>{
             </td>
             <td className="px-4 py-2 border-b">{student.dateJoined}</td>
             <td className="px-4 py-2 border-b ">{student.lastLogin}</td>
-            <td className="px-4 py-2 border-b ">
+            <td className="px-8 py-2 border-b ">
               <span
                 className={`inline-block h-3 w-3 rounded-full ${
                   student.status === "Active" ? "bg-green-500" : "bg-red-500"

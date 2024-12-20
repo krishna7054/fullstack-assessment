@@ -18,14 +18,12 @@ export function Sidebar() {
   const isActive = (href) => location.pathname === href;
 
   return (
-    <div className="pb-10 min-h-screen border-r">
+    <div className="fixed left-0 top-0 bottom-0 w-60 pb-12 border-r bg-white overflow-y-auto">
       <div className="space-y-4 py-4">
         <div className="px-2 py-2">
-          <Link to="/" className="flex items-center pl-2 mb-10">
-            <span className="text-2xl font-bold flex">
-              <LeafyGreen className="mr-1" />
-              Quyl.
-            </span>
+          <Link to="/" className="flex items-center pl-2 mb-10 w-28 h-12">
+          <img src="/src\assets/image.png" alt="" />
+            
           </Link>
           <nav className="space-y-1">
             {sidebarItems.map((item, index) => (

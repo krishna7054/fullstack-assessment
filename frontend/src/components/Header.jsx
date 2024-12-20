@@ -1,9 +1,9 @@
 import React from "react";
-import { Search, HelpCircle, MessageSquare, Bell,Settings2 } from "lucide-react";
+import { Search, HelpCircle,Settings2 } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="flex h-16 items-center px-4 border-b">
+    <header className="fixed top-0 right-0 left-60 flex h-16 items-center px-4 border-b bg-white z-10">
       {/* Search Bar */}
       <div className="flex flex-1 items-center space-x-4">
         <div className="relative w-96">
@@ -17,7 +17,7 @@ export function Header() {
       </div>
 
       {/* Header Icons and Profile */}
-      <div className="flex items-center gap-10">
+      <div className="flex items-center  space-x-4">
         <HelpCircle className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-900" />
         {/* <MessageSquare  /> */}
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-message-square-dot  cursor-pointer text-gray-500 hover:text-gray-900">
