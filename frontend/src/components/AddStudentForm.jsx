@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import supabase from '../utils/supabase';
+import { useDispatch } from "react-redux";
+import { addStudent } from "../../store/studentsSlice";
 
 export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
   const [studentName, setStudentName] = useState('');
@@ -7,6 +9,7 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
   const [selectedClass, setSelectedClass] = useState('');
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [joiningDate, setJoiningDate] = useState(''); // New state for joining date
+  const [errormessage, setErrorMessage]=useState('');
 
   const coursesByClass = {
     'CBSE 9': ['CBSE9 Math', 'CBSE9 Science', 'CBSE9 Social Studies', 'CBSE9 English'],
@@ -36,35 +39,60 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
     setJoiningDate(e.target.value); // Set joining date
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const studentData = {
-      studentName: studentName,
-      cohort: selectedCohort,
-      courses: selectedSubjects,
-      dateJoined: joiningDate,
-    };
-    try {
-      const { data, error } = await supabase.from('Student').insert([studentData]);
+ 
 
-      if (error) {
-        console.error('Error inserting data:', error.message);
-        alert('Failed to add student. Please try again.');
-      } else {
-        alert('Student added successfully!');
-        onSubmit(data); // Optionally pass the data back to the parent
-        setStudentName('');
-        setSelectedCohort('');
-        setSelectedClass('');
-        setSelectedSubjects([]);
-        setJoiningDate('');
-        onClose(); // Close the form
-      }
-    } catch (error) {
-      console.error('Unexpected error:', error);
-      alert('An unexpected error occurred. Please try again.');
-    }
+// Inside the AddStudentForm Component:
+const dispatch = useDispatch();
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const studentData = {
+    studentName: studentName,
+    cohort: selectedCohort,
+    courses: selectedSubjects,
+    dateJoined: joiningDate,
   };
+
+  try {
+    // Insert student data into Supabase
+    const { data, error } = await supabase.from("Student").insert([studentData]);
+    dispatch(addStudent(data));
+    
+
+    if (error) {
+      // If there is an error, set the errorMessage and return early
+      console.error("Error inserting data:", error.message);
+      setErrorMessage("Failed to add student. Please try again."); // Set error message
+      return; // Stop further execution
+    }
+
+    // If successful, clear any previous error message
+    setErrorMessage("");
+
+    // Dispatch to Redux
+    
+    alert("Student added successfully!");
+     // Update Redux state with the new student
+    
+
+    // Reset form fields
+    setStudentName("");
+    setSelectedCohort("");
+    setSelectedClass("");
+    setSelectedSubjects([]);
+    setJoiningDate("");
+    onClose();
+  
+    // Close the form after submission
+    
+  } catch (error) {
+    // Catch unexpected errors
+    console.error("Unexpected error:", error);
+    setErrorMessage("An unexpected error occurred. Please try again.");
+  }
+};
+
+
 
   return (
     <div className="fixed inset-0  bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 -mt-96 lg:pt-96">
@@ -77,7 +105,7 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
               Student Name
             </label>
             <input
-              id="name"
+              id="StudentName"
               type="text"
               className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Enter student's name"
@@ -186,7 +214,7 @@ export default function AddStudentForm({ isOpen, onClose, onSubmit }) {
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <button
+            <button onClick={()=>window.location.reload(false)}
               type="submit"
               className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200"
             >

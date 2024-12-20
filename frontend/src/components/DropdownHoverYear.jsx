@@ -7,7 +7,7 @@ export default function DropdownHoverYear() {
   const handleMouseLeave = () => setIsOpen(false);
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left md:-ml-8">
       <button
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

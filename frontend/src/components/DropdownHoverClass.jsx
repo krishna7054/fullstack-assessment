@@ -7,7 +7,7 @@ export default function DropdownHoverClass() {
   const handleMouseLeave = () => setIsOpen(false);
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left ">
       <button
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
